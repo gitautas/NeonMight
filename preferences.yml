@@ -1,0 +1,23 @@
+neon_might_config:
+    community_medals: 
+        type: bool
+        description: "Thingy somethingy"
+    pb_tracker: bool
+    session_timer: bool
+    level_timer: bool
+    ig_timer: bool
+    ig_timer_color: Color
+    apocalypse_display: bool
+    insight_screen: bool
+    record_boss_ghost: bool
+    ambience: bool
+    
+neon_might_visuals:
+    player_ui_portrait: bool
+    backstory: bool
+    bottom_bar: bool
+    damage_overlay: bool
+    boost_overlay: bool
+    shocker_overlay: bool
+    telefrag_overlay: bool
+    screen_fade_overlay: bool

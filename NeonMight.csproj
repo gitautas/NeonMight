@@ -1,0 +1,135 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <LangVersion>latest</LangVersion>
+	  <AssemblyName>NeonMight</AssemblyName>
+  </PropertyGroup>
+
+  <Target Name="PreBuild" BeforeTargets="BeforeBuild">
+    <Exec Command="powershell.exe .\fabric\win\env.ps1" />
+  </Target>
+
+  <Target Name="PostBuild" BeforeTargets="AfterBuild" Condition="$(DOTNET_WATCH) == 1">
+    <Exec Command="powershell.exe .\fabric\win\post_build.ps1" />
+  </Target>
+
+  <ItemGroup>
+    <Content Remove="neon_white\**" />
+    <Compile Remove="neon_white\**" />
+    <EmbeddedResource Remove="neon_white\**" />
+    <None Remove="neon_white\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Base Assemblies -->
+    <Reference Include="MelonLoader">               <HintPath>$(MELON_LOADER_PATH)\MelonLoader.dll                 </HintPath></Reference>
+    <Reference Include="0Harmony">                  <HintPath>$(MELON_LOADER_PATH)\0Harmony.dll                    </HintPath></Reference>
+    <Reference Include="Assembly-CSharp">           <HintPath>$(NEON_WHITE_DATA_PATH)\Assembly-CSharp.dll          </HintPath></Reference>
+    <Reference Include="Assembly-CSharp-firstpass"> <HintPath>$(NEON_WHITE_DATA_PATH)\Assembly-CSharp-firstpass.dll</HintPath></Reference>
+
+    <!-- Unity Assemblies -->
+    <Reference Include="Unity.Analytics.DataPrivacy">                                <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.Analytics.DataPrivacy.dll                                </HintPath></Reference>
+    <Reference Include="Unity.Formats.Fbx.Runtime">                                  <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.Formats.Fbx.Runtime.dll                                  </HintPath></Reference>
+    <Reference Include="Unity.InputSystem">                                          <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.InputSystem.dll                                          </HintPath></Reference>
+    <Reference Include="Unity.Mathematics">                                          <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.Mathematics.dll                                          </HintPath></Reference>
+    <Reference Include="Unity.MemoryProfiler">                                       <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.MemoryProfiler.dll                                       </HintPath></Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">                               <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.Postprocessing.Runtime.dll                               </HintPath></Reference>
+    <Reference Include="Unity.Recorder">                                             <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.Recorder.dll                                             </HintPath></Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">               <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.RenderPipeline.Universal.ShaderLibrary.dll               </HintPath></Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">                         <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.RenderPipelines.Core.Runtime.dll                         </HintPath></Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">                   <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.RenderPipelines.Core.ShaderLibrary.dll                   </HintPath></Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">       <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll       </HintPath></Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">                    <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.RenderPipelines.Universal.Runtime.dll                    </HintPath></Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">                    <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.RenderPipelines.Universal.Shaders.dll                    </HintPath></Reference>
+    <Reference Include="Unity.TextMeshPro">                                          <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.TextMeshPro.dll                                          </HintPath></Reference>
+    <Reference Include="Unity.Timeline">                                             <HintPath>$(NEON_WHITE_DATA_PATH)\Unity.Timeline.dll                                             </HintPath></Reference>
+    <Reference Include="UnityEngine">                                                <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.dll                                                </HintPath></Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">                            <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.AccessibilityModule.dll                            </HintPath></Reference>
+    <Reference Include="UnityEngine.AIModule">                                       <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.AIModule.dll                                       </HintPath></Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">                               <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.AndroidJNIModule.dll                               </HintPath></Reference>
+    <Reference Include="UnityEngine.AnimationModule">                                <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.AnimationModule.dll                                </HintPath></Reference>
+    <Reference Include="UnityEngine.ARModule">                                       <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.ARModule.dll                                       </HintPath></Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">                              <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.AssetBundleModule.dll                              </HintPath></Reference>
+    <Reference Include="UnityEngine.AudioModule">                                    <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.AudioModule.dll                                    </HintPath></Reference>
+    <Reference Include="UnityEngine.ClothModule">                                    <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.ClothModule.dll                                    </HintPath></Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">                             <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.ClusterInputModule.dll                             </HintPath></Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">                          <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.ClusterRendererModule.dll                          </HintPath></Reference>
+    <Reference Include="UnityEngine.CoreModule">                                     <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.CoreModule.dll                                     </HintPath></Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">                           <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.CrashReportingModule.dll                           </HintPath></Reference>
+    <Reference Include="UnityEngine.DirectorModule">                                 <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.DirectorModule.dll                                 </HintPath></Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">                                 <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.DSPGraphModule.dll                                 </HintPath></Reference>
+    <Reference Include="UnityEngine.GameCenterModule">                               <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.GameCenterModule.dll                               </HintPath></Reference>
+    <Reference Include="UnityEngine.GIModule">                                       <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.GIModule.dll                                       </HintPath></Reference>
+    <Reference Include="UnityEngine.GridModule">                                     <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.GridModule.dll                                     </HintPath></Reference>
+    <Reference Include="UnityEngine.HotReloadModule">                                <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.HotReloadModule.dll                                </HintPath></Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">                          <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.ImageConversionModule.dll                          </HintPath></Reference>
+    <Reference Include="UnityEngine.IMGUIModule">                                    <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.IMGUIModule.dll                                    </HintPath></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">                              <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.InputLegacyModule.dll                              </HintPath></Reference>
+    <Reference Include="UnityEngine.InputModule">                                    <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.InputModule.dll                                    </HintPath></Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">                            <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.JSONSerializeModule.dll                            </HintPath></Reference>
+    <Reference Include="UnityEngine.LocalizationModule">                             <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.LocalizationModule.dll                             </HintPath></Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">                           <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.ParticleSystemModule.dll                           </HintPath></Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">                     <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.PerformanceReportingModule.dll                     </HintPath></Reference>
+    <Reference Include="UnityEngine.Physics2DModule">                                <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Physics2DModule.dll                                </HintPath></Reference>
+    <Reference Include="UnityEngine.PhysicsModule">                                  <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.PhysicsModule.dll                                  </HintPath></Reference>
+    <Reference Include="UnityEngine.ProfilerModule">                                 <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.ProfilerModule.dll                                 </HintPath></Reference>
+    <Reference Include="UnityEngine.Purchasing">                                     <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Purchasing.dll                                     </HintPath></Reference>
+    <Reference Include="UnityEngine.Purchasing.AppleCore">                           <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Purchasing.AppleCore.dll                           </HintPath></Reference>
+    <Reference Include="UnityEngine.Purchasing.AppleMacosStub">                      <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Purchasing.AppleMacosStub.dll                      </HintPath></Reference>
+    <Reference Include="UnityEngine.Purchasing.AppleStub">                           <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Purchasing.AppleStub.dll                           </HintPath></Reference>
+    <Reference Include="UnityEngine.Purchasing.Codeless">                            <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Purchasing.Codeless.dll                            </HintPath></Reference>
+    <Reference Include="UnityEngine.Purchasing.SecurityCore">                        <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Purchasing.SecurityCore.dll                        </HintPath></Reference>
+    <Reference Include="UnityEngine.Purchasing.SecurityStub">                        <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Purchasing.SecurityStub.dll                        </HintPath></Reference>
+    <Reference Include="UnityEngine.Purchasing.Stores">                              <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Purchasing.Stores.dll                              </HintPath></Reference>
+    <Reference Include="UnityEngine.Purchasing.WinRTCore">                           <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Purchasing.WinRTCore.dll                           </HintPath></Reference>
+    <Reference Include="UnityEngine.Purchasing.WinRTStub">                           <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.Purchasing.WinRTStub.dll                           </HintPath></Reference>
+    <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule"><HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">                            <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.ScreenCaptureModule.dll                            </HintPath></Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">                          <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.SharedInternalsModule.dll                          </HintPath></Reference>
+    <Reference Include="UnityEngine.SpatialTracking">                                <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.SpatialTracking.dll                                </HintPath></Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">                               <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.SpriteMaskModule.dll                               </HintPath></Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">                              <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.SpriteShapeModule.dll                              </HintPath></Reference>
+    <Reference Include="UnityEngine.StreamingModule">                                <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.StreamingModule.dll                                </HintPath></Reference>
+    <Reference Include="UnityEngine.SubstanceModule">                                <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.SubstanceModule.dll                                </HintPath></Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">                               <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.SubsystemsModule.dll                               </HintPath></Reference>
+    <Reference Include="UnityEngine.TerrainModule">                                  <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.TerrainModule.dll                                  </HintPath></Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">                           <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.TerrainPhysicsModule.dll                           </HintPath></Reference>
+    <Reference Include="UnityEngine.TextCoreModule">                                 <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.TextCoreModule.dll                                 </HintPath></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">                            <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.TextRenderingModule.dll                            </HintPath></Reference>
+    <Reference Include="UnityEngine.TilemapModule">                                  <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.TilemapModule.dll                                  </HintPath></Reference>
+    <Reference Include="UnityEngine.TLSModule">                                      <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.TLSModule.dll                                      </HintPath></Reference>
+    <Reference Include="UnityEngine.UI">                                             <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UI.dll                                             </HintPath></Reference>
+    <Reference Include="UnityEngine.UIElementsModule">                               <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UIElementsModule.dll                               </HintPath></Reference>
+    <Reference Include="UnityEngine.UIElementsNativeModule">                         <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UIElementsNativeModule.dll                         </HintPath></Reference>
+    <Reference Include="UnityEngine.UIModule">                                       <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UIModule.dll                                       </HintPath></Reference>
+    <Reference Include="UnityEngine.UmbraModule">                                    <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UmbraModule.dll                                    </HintPath></Reference>
+    <Reference Include="UnityEngine.UNETModule">                                     <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UNETModule.dll                                     </HintPath></Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">                           <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UnityAnalyticsModule.dll                           </HintPath></Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">                             <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UnityConnectModule.dll                             </HintPath></Reference>
+    <Reference Include="UnityEngine.UnityCurlModule">                                <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UnityCurlModule.dll                                </HintPath></Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">                        <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UnityTestProtocolModule.dll                        </HintPath></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">               <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UnityWebRequestAssetBundleModule.dll               </HintPath></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">                     <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UnityWebRequestAudioModule.dll                     </HintPath></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">                          <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UnityWebRequestModule.dll                          </HintPath></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">                   <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UnityWebRequestTextureModule.dll                   </HintPath></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">                       <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.UnityWebRequestWWWModule.dll                       </HintPath></Reference>
+    <Reference Include="UnityEngine.VehiclesModule">                                 <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.VehiclesModule.dll                                 </HintPath></Reference>
+    <Reference Include="UnityEngine.VFXModule">                                      <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.VFXModule.dll                                      </HintPath></Reference>
+    <Reference Include="UnityEngine.VideoModule">                                    <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.VideoModule.dll                                    </HintPath></Reference>
+    <Reference Include="UnityEngine.VirtualTexturingModule">                         <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.VirtualTexturingModule.dll                         </HintPath></Reference>
+    <Reference Include="UnityEngine.VRModule">                                       <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.VRModule.dll                                       </HintPath></Reference>
+    <Reference Include="UnityEngine.WindModule">                                     <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.WindModule.dll                                     </HintPath></Reference>
+    <Reference Include="UnityEngine.XR.LegacyInputHelpers">                          <HintPath>$(NEON_WHITE_DATA_PATH)\UnityEngine.XR.LegacyInputHelpers.dll                          </HintPath></Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LavaGang.MelonLoader" Version="0.6.1" />
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
+    <PackageReference Include="YamlDotNet" Version="13.1.0" />
+  </ItemGroup>
+
+</Project>
+
+

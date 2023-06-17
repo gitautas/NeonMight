@@ -1,0 +1,5 @@
+bin/
+obj/
+
+# Template targets
+./Preferences.cs
